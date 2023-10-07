@@ -1,0 +1,1 @@
+todo: use docker. running rust on windows is proving to be a PITA
