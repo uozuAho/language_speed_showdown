@@ -6,3 +6,9 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+
+[profile.gofast]
+inherits = 'release'
+lto = 'fat'
+panic = 'abort'
+codegen-units = 1

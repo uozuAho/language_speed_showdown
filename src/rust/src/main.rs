@@ -115,5 +115,12 @@ fn exhaustive(points: &[Point2D], route: &mut [usize], time_limit: Duration) {
 }
 
 fn main() {
-    println!("Hello, world!");
+    let args: Vec<String> = std::env::args().collect();
+    let filename = &args[1];
+    println!("Reading points from {}", filename);
+
+    let points = read_points_from_file(filename);
+    let mut route: Vec<usize> = (0..points.len()).collect();
+
+    exhaustive(&points, &mut route, Duration::from_secs(10))
 }

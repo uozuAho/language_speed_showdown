@@ -6,4 +6,7 @@ Same as https://github.com/niklas-heer/speed-comparison, except:
 - not using Earthly
 
 # todo
-- finish rust impl
+- why is rust slower than cs????
+    - write a c version
+    - are impls correct?
+    - try profiling & optimising rust impl
