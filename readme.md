@@ -6,4 +6,4 @@ Same as https://github.com/niklas-heer/speed-comparison, except:
 - not using Earthly
 
 # todo
-- get rust compiling
+- finish rust impl

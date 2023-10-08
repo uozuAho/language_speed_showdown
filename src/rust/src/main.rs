@@ -49,7 +49,7 @@ fn cycle_distance_squared(points: &[Point2D], route: &[usize]) -> f64 {
     distance
 }
 
-fn reverse_range(array: &mut [i32], start: usize, end: usize) -> &[i32] {
+fn reverse_range(array: &mut [usize], start: usize, end: usize) -> &[usize] {
     let mut start = start;
     let mut end = end;
     while start < end {
@@ -60,8 +60,8 @@ fn reverse_range(array: &mut [i32], start: usize, end: usize) -> &[i32] {
     array
 }
 
-fn exhaustive(points: &[Point2D], route: &[usize], time_limit: Duration) -> Vec<usize> {
-    let mut sw = Instant::now();
+fn exhaustive(points: &[Point2D], route: &mut [usize], time_limit: Duration) {
+    let sw = Instant::now();
     let mut best = route.to_vec();
     let mut route_cost = cycle_distance_squared(points, route);
     let mut best_cost = f64::INFINITY;
@@ -82,7 +82,8 @@ fn exhaustive(points: &[Point2D], route: &[usize], time_limit: Duration) -> Vec<
                     continue;
                 }
                 let jprev = if jj == 0 { points.len() - 1 } else { jj - 1 };
-                let (a, b, c, d) = (route[i-1], route[i], route[jprev], route[jj]);
+                let (a, b, c, d) = (
+                    route[i-1], route[i], route[jprev], route[jj]);
                 let cost_removed =
                       points[a].distance_squared(&points[b])
                     + points[c].distance_squared(&points[d]);
@@ -111,7 +112,6 @@ fn exhaustive(points: &[Point2D], route: &[usize], time_limit: Duration) -> Vec<
         route.copy_from_slice(&best);
         route_cost = best_cost;
     }
-    best
 }
 
 fn main() {
