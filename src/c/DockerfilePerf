@@ -1,0 +1,16 @@
+FROM gcc:latest
+apt install valgrind
+
+# gperf TODO: get rid of this, does't work
+WORKDIR /gperf
+RUN wget https://github.com/gperftools/gperftools/releases/download/gperftools-2.13/gperftools-2.13.tar.gz
+RUN tar -xzf gperftools-2.13.tar.gz
+WORKDIR /gperf/gperftools-2.13
+RUN ./configure
+RUN make
+RUN make install
+
+# my app
+WORKDIR /app
+COPY . ./
+RUN gcc twoopt.c -o twoopt -g -lprofiler

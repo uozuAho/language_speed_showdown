@@ -133,7 +133,7 @@ int main(int argc, char** argv) {
         route[i] = i;
     }
 
-    exhaustive(points, num_points, route, 10);
+    exhaustive(points, num_points, route, 2);
 
     free(points);
     free(route);
