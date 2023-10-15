@@ -1,11 +1,10 @@
 ﻿using cs;
 
-if (args.Length < 1) Console.WriteLine("asdf");
 var dataPath = args[0];
 var points = FileReader.Read(dataPath);
 var route = Enumerable.Range(0, points.Length).ToArray();
 
-TwoOpt.Exhaustive(points, route, TimeSpan.FromSeconds(3));
+TwoOpt.Exhaustive(points, route, TimeSpan.FromSeconds(4));
 
 internal static class FileReader
 {
