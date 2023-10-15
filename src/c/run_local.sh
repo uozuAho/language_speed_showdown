@@ -12,5 +12,5 @@ gcc twoopt.c -o twoopt -g -O3 -static -flto -march=native -mtune=native \
 # ./twoopt ../../data/tsp/tsp_85900_1
 
 # callgrind
-valgrind --tool=callgrind --callgrind-out-file=callgrind.out ./twoopt ../../data/tsp/tsp_1000_1
-callgrind_annotate --auto=yes callgrind.out > callgrind.annotated.txt
+valgrind --tool=callgrind --callgrind-out-file=callgrind.out ./twoopt ../../data/tsp/tsp_85900_1
+callgrind_annotate --auto=yes callgrind.out > callgrind.local.annotated.txt
