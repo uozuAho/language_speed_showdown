@@ -1,2 +1,3 @@
 twoopt
 callgrind*
+*.asm

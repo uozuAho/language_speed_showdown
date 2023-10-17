@@ -4,6 +4,7 @@ ROOT=$(realpath ../..)
 DATA=$ROOT/data
 
 docker build -t langshowdown-cs -f Dockerfile .
+
 docker run --rm -it -v $DATA:/app/data langshowdown-cs ./dotnet-trace collect \
     -o data/trace.nettrace \
     -- ./out/cs data/tsp/tsp_85900_1
