@@ -8,4 +8,4 @@ COPY . ./
 RUN dotnet restore
 RUN dotnet publish -c Release -o out
 
-# ENTRYPOINT ["dotnet", "cs.dll"]
+ENTRYPOINT ["./out/cs"]
