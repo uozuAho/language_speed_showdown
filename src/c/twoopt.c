@@ -99,12 +99,13 @@ void exhaustive(Point2D* points, int num_points, int* route, int time_limit) {
                     improved = 1;
                 }
                 num_checks++;
-                if ((double) (clock() - last_print) / CLOCKS_PER_SEC > 1.0) {
+                int check_clock = (num_checks & 0xffff) == 0;
+                if (check_clock && (double) (clock() - last_print) / CLOCKS_PER_SEC > 1.0) {
                     printf("best: %lf     Checks: %d\n", best_cost, num_checks);
                     last_print = clock();
                     num_checks = 0;
                 }
-                if ((double) (clock() - start_time) / CLOCKS_PER_SEC > time_limit) {
+                if (check_clock && (double) (clock() - start_time) / CLOCKS_PER_SEC > time_limit) {
                     time_limit_reached = 1;
                     break;
                 }
