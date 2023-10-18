@@ -1,13 +1,20 @@
 #!/bin/bash
-# meh, output is too coarse to be useful, use rider?
 ROOT=$(realpath ../..)
 DATA=$ROOT/data
 
-docker build -t langshowdown-cs -f Dockerfile .
+docker build -t langshowdown-cs-trace -f DockerfileTrace .
 
-docker run --rm -it -v $DATA:/app/data langshowdown-cs ./dotnet-trace collect \
-    -o data/trace.nettrace \
-    -- ./out/cs data/tsp/tsp_85900_1
+# ---------------------------------
+# Get top 10 methods by CPU time. Not fine-grained enough to find bottlenecks.
+# docker run --rm -it -v $DATA:/app/data langshowdown-cs-trace ./dotnet-trace collect \
+#     -o data/trace.nettrace \
+#     -- ./out/cs data/tsp/tsp_85900_1
 
-docker run --rm -v $DATA:/app/data langshowdown-cs ./dotnet-trace report \
-    data/trace.nettrace topN -n 10 > trace.top10.txt
+# docker run --rm -v $DATA:/app/data langshowdown-cs-trace ./dotnet-trace report \
+#     data/trace.nettrace topN -n 10 > trace.top10.txt
+# ---------------------------------
+
+# ---------------------------------
+# See system calls
+docker run --rm -v $DATA:/app/data langshowdown-cs-trace strace -c \
+    ./out/cs data/tsp/tsp_85900_1
