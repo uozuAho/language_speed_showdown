@@ -39,4 +39,15 @@ public static class Utils
 
         return array;
     }
+
+    public static Point2D[] GenerateRandomPoints(int numPoints)
+    {
+        var points = new Point2D[numPoints];
+        var rand = new Random();
+        for (var i = 0; i < numPoints; i++)
+        {
+            points[i] = new Point2D(rand.NextDouble() * 100, rand.NextDouble() * 100);
+        }
+        return points;
+    }
 }

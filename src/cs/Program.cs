@@ -1,10 +1,20 @@
-﻿using cs;
+﻿using BenchmarkDotNet.Running;
+using cs;
 
-var dataPath = args[0];
-var points = FileReader.Read(dataPath);
-var route = Enumerable.Range(0, points.Length).ToArray();
+var runBenchmark = args[0] == "benchmark";
 
-TwoOpt.Exhaustive(points, route, TimeSpan.FromSeconds(4));
+if (runBenchmark)
+{
+    BenchmarkRunner.Run<TwoOptBenchmark>();
+    return;
+}
+else
+{
+    var dataPath = args[0];
+    var points = FileReader.Read(dataPath);
+    var route = Enumerable.Range(0, points.Length).ToArray();
+    TwoOpt.Exhaustive(points, route, TimeSpan.FromSeconds(4));
+}
 
 internal static class FileReader
 {
